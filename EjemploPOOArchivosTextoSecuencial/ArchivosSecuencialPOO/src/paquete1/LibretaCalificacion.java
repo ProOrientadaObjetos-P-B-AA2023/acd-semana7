@@ -1,39 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paquete1;
-
-/**
- *
- * @author reroes
- */
 public class LibretaCalificacion {
     private String estudiante;
     private double promedio;
     private String promedioCualitativo;
     private Calificacion [] calificaciones;
-    
     public LibretaCalificacion(String n, Calificacion [] c){
         estudiante = n;
         calificaciones = c;
     }
-    
     public void establecerEstudiante(String n){
         estudiante = n;
     }
-    
     public void establecerPromedio(){
         double suma = 0;
-        
         for (int i = 0; i < obtenerCalificaciones().length; i++) {
             suma = suma + obtenerCalificaciones()[i].obtenerNota();
         }
-        
         promedio = suma/obtenerCalificaciones().length;
     }
-    
     public void establecerPromedioCualitativo(){
         if((obtenerPromedio()>=0)&&(obtenerPromedio()<=3.09)){
             promedioCualitativo = "Regular";
@@ -57,27 +41,21 @@ public class LibretaCalificacion {
             }
         }
     }
-    
     public void establecerCalificaciones(Calificacion [] n){
         calificaciones = n;
     }
-    
     public String obtenerEstudiante(){
         return estudiante;
     }
-    
     public double obtenerPromedio(){
         return promedio;
     }
-    
     public String obtenerPromedioCualitativo(){
         return promedioCualitativo;
     }
-    
     public Calificacion [] obtenerCalificaciones(){
         return calificaciones;
     }
-    
     @Override
     public String toString(){
         String cadena = "Libreta de Calificaciones\n";
