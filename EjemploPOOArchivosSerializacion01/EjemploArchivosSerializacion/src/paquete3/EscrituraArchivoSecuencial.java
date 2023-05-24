@@ -1,24 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paquete3;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import paquete1.Calificacion;
 import paquete1.Profesor;
-
 public class EscrituraArchivoSecuencial {
-
     private String nombreArchivo;
     private ObjectOutputStream salida; // envía los datos a un archivo
     private Calificacion registro;
     private ArrayList<Calificacion> lista;
-
     public EscrituraArchivoSecuencial(String nombreArc) {
         nombreArchivo = nombreArc;
         establecerLista(); // obtener los valores (objetos)
@@ -40,7 +31,6 @@ public class EscrituraArchivoSecuencial {
             System.err.println("Error al abrir el archivo.");
         } // fin de catch
     }
-    
     public void establecerNombreArchivo(String n){
         nombreArchivo = n;
     }
@@ -48,7 +38,6 @@ public class EscrituraArchivoSecuencial {
     public void establecerRegistro(Calificacion p) {
         registro = p;
     }
-
     public void establecerSalida() {
         try {
             salida.writeObject(registro); // envía el registro como salida
@@ -56,7 +45,6 @@ public class EscrituraArchivoSecuencial {
             System.err.println("Error al escribir en el archivo.");
         }
     }
-
     // en el atributo listaProfesores obtenemos los registros 
     // del archivo
     public void establecerLista() {
@@ -64,15 +52,12 @@ public class EscrituraArchivoSecuencial {
         l.establecerListaCalificaciones();
         lista = l.obtenerListaCalificaciones();
     }
-
     public String obtenerNombreArchivo(){
         return nombreArchivo;
     }
-    
     public ArrayList<Calificacion> obtenerLista() {
         return lista;
     }
-
     public ObjectOutputStream obtenerSalida(){
         return salida;
     }
@@ -85,8 +70,6 @@ public class EscrituraArchivoSecuencial {
         } // fin de try
         catch (IOException ioException) {
             System.err.println("Error al cerrar el archivo.");
-            
         } // fin de catch
     } 
-
 }

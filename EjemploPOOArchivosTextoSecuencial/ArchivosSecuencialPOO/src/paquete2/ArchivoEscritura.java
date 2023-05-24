@@ -8,7 +8,7 @@ import java.util.Formatter;
 import paquete1.Profesor;
 public class ArchivoEscritura {
     private String nombreArchivo;
-    private String rutaArchivo;
+    private String rutaArchivo; //Ruta relativa o Absoluta
     private Profesor registro;
     private Formatter salidaArchivo;
     public ArchivoEscritura(String n) {
@@ -37,7 +37,7 @@ public class ArchivoEscritura {
     // agrega registros al archivo
     public void establecerSalida() {
         try {
-            salidaArchivo = new Formatter(new FileWriter(rutaArchivo, true));
+            salidaArchivo = new Formatter(new FileWriter (rutaArchivo, true));
             Profesor p = obtenerRegistro();
             String cadenaRegistro = String.format("%s;%s",
                     p.obtenerNombre(), p.obtenerTipo());
