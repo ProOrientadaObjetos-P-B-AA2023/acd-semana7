@@ -1,15 +1,20 @@
 package Utilerias;
 import paquete1.Profesor;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.Scanner;
 
 public class ProbandoOpcionesVarias {
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         Profesor profes[] = {new Profesor("Daniel","Principal")
                             ,new Profesor("Carlos","Auxiliar")
                             ,new Profesor("Pedro","Titular")};
@@ -33,5 +38,26 @@ public class ProbandoOpcionesVarias {
             System.out.println(profesores.get(i));
         for(Profesor profeAux : profesores)
             System.out.println(profeAux);
+        
+        ObjectOutputStream archivoSalidaObj = new ObjectOutputStream(new FileOutputStream("test2.ser"));
+        archivoSalidaObj.writeObject(new Personita("Daniel","Principal"));
+        archivoSalidaObj.close();
+        ObjectInputStream archivoEntradaObj = new ObjectInputStream(new FileInputStream("test2.ser"));
+        Personita personitaAux = (Personita) archivoEntradaObj.readObject();
+        System.out.println(personitaAux);
     }
 }
+
+class Personita implements Serializable{
+    private String nombre, tipo;
+    public Personita(String nombre, String tipo) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
+    @Override
+    public String toString() {
+        return "Personita{" + "nombre=" + nombre + ", tipo=" + tipo + '}';
+    }
+}
+
+
